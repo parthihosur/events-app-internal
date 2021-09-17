@@ -1,0 +1,27 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: demo-api
+spec: 
+  selector:
+    matchLabels:
+      app: demo-api
+  replicas: 1 # tells deployment to run 1 pod matching the template
+  template:
+    metadata:
+      labels:
+        app: demo-api
+    spec:
+      containers:
+      - name: demo-api
+        image: gcr.io/dtc-092021-309/internal-image:v1.0.0
+        env: 
+        - name: PORT
+          value: "8082"
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "dtc-092021-309" 
+
+        ports:
+        - containerPort: 8082
+            
+        
